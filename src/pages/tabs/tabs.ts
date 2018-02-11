@@ -21,6 +21,6 @@ export class TabsPage {
   }
 
   ionViewWillEnter() {
-    this.tabIndex = this.navParams.data.tabIndex || 0;
+    this.tabIndex = this.navParams.get('tabIndex') || 0;
   }
 }

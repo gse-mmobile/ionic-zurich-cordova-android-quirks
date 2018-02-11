@@ -24,7 +24,7 @@ export class AboutPage {
   }
 
   ionViewWillEnter() {
-    if (this.quirksService.pendingResult) {
+    if (this.quirksService.pendingResult && this.quirksService.pendingResult !== '') {
       this.imgURI = this.wkWebViewFileURI(this.quirksService.pendingResult);
 
       this.quirksService.getStateRecovery().then((result: string) => {

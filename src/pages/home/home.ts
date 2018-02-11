@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {QuirksService} from '../../providers/quirks-service';
 
 @Component({
   selector: 'page-home',
@@ -8,14 +7,12 @@ import {QuirksService} from '../../providers/quirks-service';
 })
 export class HomePage {
 
-  constructor(private splashScreen: SplashScreen, private quirksService: QuirksService) {
+  constructor(private splashScreen: SplashScreen) {
 
   }
 
   ionViewDidEnter() {
-    if (!this.quirksService.processingQuirks) {
-      this.splashScreen.hide();
-    }
+    this.splashScreen.hide();
   }
 
 }

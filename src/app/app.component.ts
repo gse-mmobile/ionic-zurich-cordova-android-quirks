@@ -9,13 +9,14 @@ import {QuirksService} from '../providers/quirks-service';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
 
   constructor(private app: App, platform: Platform, statusBar: StatusBar, private quirksService: QuirksService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
+
+      this.app.getRootNav().setRoot(TabsPage, {tabIndex: this.quirksService.pendingResult && this.quirksService.pendingResult !== '' ? 1 : 0});
     });
 
     if (platform.is('android')) {
@@ -35,7 +36,6 @@ export class MyApp {
 
       if ('Camera' === event.pendingResult.pluginServiceName && event.pendingResult.result) {
         this.quirksService.pendingResult = event.pendingResult.result;
-        this.app.getRootNav().setRoot(TabsPage, {tabIndex: 2});
       }
     }
   }

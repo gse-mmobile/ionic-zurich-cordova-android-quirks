@@ -4,8 +4,6 @@ import {Storage} from '@ionic/storage';
 @Injectable()
 export class QuirksService {
 
-  processingQuirks: boolean = false;
-
   pendingResult: string;
 
   constructor(private storage: Storage) {
