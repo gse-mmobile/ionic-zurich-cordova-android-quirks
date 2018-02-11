@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import {Camera, CameraOptions, CameraPopoverOptions} from '@ionic-native/camera';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
 @Component({
   selector: 'page-about',
@@ -12,8 +13,12 @@ export class AboutPage {
 
   anotherValue: string;
 
-  constructor(private camera: Camera) {
+  constructor(private camera: Camera, private splashScreen: SplashScreen) {
 
+  }
+
+  ionViewDidEnter() {
+    this.splashScreen.hide();
   }
 
   open() {
