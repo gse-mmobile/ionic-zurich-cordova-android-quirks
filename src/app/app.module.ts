@@ -14,6 +14,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {Camera} from '@ionic-native/camera';
 import {QuirksService} from '../providers/quirks-service';
 import {IonicStorageModule} from '@ionic/storage';
+import {TabsService} from '../providers/tabs-service';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {IonicStorageModule} from '@ionic/storage';
     SplashScreen,
     Camera,
     QuirksService,
+    TabsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

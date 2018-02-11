@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {SplashScreen} from '@ionic-native/splash-screen';
 
 @Component({
   selector: 'page-home',
@@ -7,12 +6,9 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 })
 export class HomePage {
 
-  constructor(private splashScreen: SplashScreen) {
+  constructor() {
 
   }
 
-  ionViewDidEnter() {
-    this.splashScreen.hide();
-  }
 
 }

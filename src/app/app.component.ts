@@ -1,22 +1,29 @@
 import { Component } from '@angular/core';
-import {App, Platform} from 'ionic-angular';
+import {Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import {QuirksService} from '../providers/quirks-service';
+import {TabsService} from '../providers/tabs-service';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  rootPage:any = TabsPage;
 
-  constructor(private app: App, platform: Platform, statusBar: StatusBar, private quirksService: QuirksService) {
+  constructor(platform: Platform, private splashScreen: SplashScreen, statusBar: StatusBar, private quirksService: QuirksService, private tabsService: TabsService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
 
-      this.app.getRootNav().setRoot(TabsPage, {tabIndex: this.quirksService.pendingResult && this.quirksService.pendingResult !== '' ? 1 : 0});
+      if (this.quirksService.pendingResult) {
+        this.tabsService.switchToTab(1);
+      } else {
+        this.splashScreen.hide();
+      }
     });
 
     if (platform.is('android')) {

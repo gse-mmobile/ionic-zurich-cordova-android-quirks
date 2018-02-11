@@ -1,9 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 
 import {AboutPage} from '../about/about';
 import {ContactPage} from '../contact/contact';
 import {HomePage} from '../home/home';
-import {NavParams} from 'ionic-angular';
+import {Tabs} from 'ionic-angular';
+import {TabsService} from '../../providers/tabs-service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -14,13 +16,23 @@ export class TabsPage {
   tab2Root = AboutPage;
   tab3Root = ContactPage;
 
-  tabIndex: number;
+  @ViewChild('myTabs') tabRef: Tabs;
 
-  constructor(private navParams: NavParams) {
+  private tabIndexSubscriber: Subscription;
+
+  constructor(private tabsService: TabsService) {
 
   }
 
-  ionViewWillEnter() {
-    this.tabIndex = this.navParams.get('tabIndex') || 0;
+  ionViewDidLoad() {
+    this.tabIndexSubscriber = this.tabsService.tabIndex.subscribe((index: number) => {
+      this.tabRef.select(index);
+    });
+  }
+
+  ionViewWillLeave() {
+    if (this.tabIndexSubscriber) {
+      this.tabIndexSubscriber.unsubscribe();
+    }
   }
 }
