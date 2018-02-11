@@ -33,3 +33,6 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+/plugins/
+/www/
+/node_modules/
