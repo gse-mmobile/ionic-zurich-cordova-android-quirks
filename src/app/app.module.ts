@@ -13,6 +13,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {Camera} from '@ionic-native/camera';
 import {QuirksService} from '../providers/quirks-service';
+import {IonicStorageModule} from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {QuirksService} from '../providers/quirks-service';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

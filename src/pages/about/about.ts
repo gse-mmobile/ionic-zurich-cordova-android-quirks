@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import {Camera, CameraOptions, CameraPopoverOptions} from '@ionic-native/camera';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {QuirksService} from '../../providers/quirks-service';
+import {Platform} from 'ionic-angular';
 
 @Component({
   selector: 'page-about',
@@ -14,7 +15,7 @@ export class AboutPage {
 
   anotherValue: string;
 
-  constructor(private camera: Camera, private splashScreen: SplashScreen, private quirksService: QuirksService) {
+  constructor(private platform: Platform, private camera: Camera, private splashScreen: SplashScreen, private quirksService: QuirksService) {
 
   }
 
@@ -25,15 +26,36 @@ export class AboutPage {
   ionViewWillEnter() {
     if (this.quirksService.pendingResult) {
       this.imgURI = this.wkWebViewFileURI(this.quirksService.pendingResult);
+
+      this.quirksService.getStateRecovery().then((result: string) => {
+        this.anotherValue = result;
+
+        this.quirksService.removeStateRecovery().then(() => {
+          // Cool
+        });
+      });
     }
   }
 
   open() {
-    this.getPicture(this.camera.PictureSourceType.CAMERA);
+    this.saveForRecovery().then(() => {
+      this.takePhoto();
+    });
   }
 
-  private getPicture(sourceType: number) {
+  private saveForRecovery(): Promise<{}> {
+    return new Promise((resolve) => {
+      if (this.platform.is('android')) {
+        this.quirksService.saveStateRecovery(this.anotherValue).then(() => {
+          resolve();
+        });
+      } else {
+        resolve();
+      }
+    });
+  }
 
+  private takePhoto() {
     //noinspection TypeScriptUnresolvedVariable
     let popoverOptions: CameraPopoverOptions = {
       x: 0,
@@ -46,7 +68,7 @@ export class AboutPage {
     let options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
-      sourceType: sourceType,
+      sourceType: this.camera.PictureSourceType.CAMERA,
       allowEdit: false,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
