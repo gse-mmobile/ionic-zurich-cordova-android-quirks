@@ -1,0 +1,8 @@
+{
+  "name": "ionic-zurich-cordova-android-quirks",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
