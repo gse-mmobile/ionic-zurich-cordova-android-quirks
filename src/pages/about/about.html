@@ -8,9 +8,20 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Another value</ion-label>
+      <ion-input type="text" [(ngModel)]="anotherValue"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div><span>Another value: {{anotherValue}}</span></div>
+
   <h3>Cordova Camera</h3>
 
-  <button ion-button primary (click)="open()">Open camera</button>
+  <div>
+    <button ion-button primary (click)="open()">Open camera</button>
+  </div>
 
   <div *ngIf="imgURI != null">
     <img [src]="imgURI">

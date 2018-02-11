@@ -10,6 +10,8 @@ export class AboutPage {
 
   imgURI: string;
 
+  anotherValue: string;
+
   constructor(private camera: Camera) {
 
   }
