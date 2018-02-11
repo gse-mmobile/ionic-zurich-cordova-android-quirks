@@ -5,4 +5,6 @@ export class QuirksService {
 
   processingQuirks: boolean = false;
 
+  pendingResult: string;
+
 }

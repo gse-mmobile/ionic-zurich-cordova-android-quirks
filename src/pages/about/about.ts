@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import {Camera, CameraOptions, CameraPopoverOptions} from '@ionic-native/camera';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {QuirksService} from '../../providers/quirks-service';
 
 @Component({
   selector: 'page-about',
@@ -13,12 +14,18 @@ export class AboutPage {
 
   anotherValue: string;
 
-  constructor(private camera: Camera, private splashScreen: SplashScreen) {
+  constructor(private camera: Camera, private splashScreen: SplashScreen, private quirksService: QuirksService) {
 
   }
 
   ionViewDidEnter() {
     this.splashScreen.hide();
+  }
+
+  ionViewWillEnter() {
+    if (this.quirksService.pendingResult) {
+      this.imgURI = this.wkWebViewFileURI(this.quirksService.pendingResult);
+    }
   }
 
   open() {
