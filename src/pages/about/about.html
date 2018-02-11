@@ -8,4 +8,12 @@
 
 <ion-content padding>
 
+  <h3>Cordova Camera</h3>
+
+  <button ion-button primary (click)="open()">Open camera</button>
+
+  <div *ngIf="imgURI != null">
+    <img [src]="imgURI">
+  </div>
+
 </ion-content>
