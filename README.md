@@ -8,9 +8,9 @@ The Cordova Android Life Cycle and quirks is described in the [documentation](ht
 
 ## Demo structure
 
-The **master** branch of this project doesn't include any quirks. You could use it to simulate the problem on an Android device running on low memory. You could also simulate the effect by setting your Android device to "always destroy activities" (in the developer options).
+The [master](https://github.com/peterpeterparker/ionic-zurich-cordova-android-quirks) branch of this project doesn't include any quirks. You could use it to simulate the problem on an Android device running on low memory. You could also simulate the effect by setting your Android device to "always destroy activities" (in the developer options).
 
-The **quirks** branch display how to handle the lifecycle in order to know not loose user inputs or not display a restarting app to them.
+The [quirks](https://github.com/peterpeterparker/ionic-zurich-cordova-android-quirks/tree/quirks) branch display how to handle the lifecycle in order to know not loose user inputs or not display a restarting app to them.
 
 ## Additional documentation
 
